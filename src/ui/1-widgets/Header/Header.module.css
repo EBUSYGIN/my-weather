@@ -1,0 +1,18 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.date {
+  color: var(--font-white-secondary);
+  font-weight: var(--font-400);
+  font-size: var(--font-20);
+  text-transform: capitalize;
+}
+
+.tuneText {
+  font-weight: var(--font-400);
+  font-size: var(--font-20);
+  color: var(--font-white-primary);
+}
