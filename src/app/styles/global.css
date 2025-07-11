@@ -4,11 +4,17 @@ html {
 
 body {
   background: var(--primary-bg);
-  padding: 50px;
+  padding: 30px 50px;
 
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: background 0.3s, color 0.3s;
+
+  display: flex;
+  flex-direction: column;
+
+  height: 100vh;
 }
 
 body > div {

@@ -10,7 +10,7 @@ export function Header() {
   };
 
   return (
-    <div className={styles.header}>
+    <header className={styles.header}>
       <Icon.Logo />
       <Input icon='Magnifier' placeholder='Введите город...' />
       <div className={styles.date}>
@@ -19,6 +19,6 @@ export function Header() {
       <p className={styles.tuneText}>
         Будущее кажется светлым — оставайтесь с нами!
       </p>
-    </div>
+    </header>
   );
 }
