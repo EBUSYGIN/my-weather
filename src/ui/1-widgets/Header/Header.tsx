@@ -12,7 +12,11 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Icon.Logo />
-      <Input icon='Magnifier' placeholder='Введите город...' />
+      <Input
+        icon='Magnifier'
+        placeholder='Введите город...'
+        className={styles.search}
+      />
       <div className={styles.date}>
         {new Intl.DateTimeFormat('ru-RU', dateFormatOptions).format(new Date())}
       </div>

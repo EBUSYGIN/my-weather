@@ -1,23 +1,18 @@
 html {
   min-height: 100vh;
+  color: var(--white);
 }
 
 body {
   background: var(--primary-bg);
   padding: 30px 50px;
 
-  display: flex;
-  justify-content: center;
-  align-items: center;
   transition: background 0.3s, color 0.3s;
 
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: column;
 
   height: 100vh;
-}
-
-body > div {
-  max-width: 1440px;
-  width: 100%;
 }
