@@ -1,3 +1,5 @@
+import cn from 'classnames';
+
 import { Icon } from '../Icon/Icon';
 
 import { InputProps } from './Input.props';
@@ -8,12 +10,13 @@ export function Input({
   label,
   error,
   icon,
+  className,
   ...props
 }: InputProps) {
   const IconComponent = icon && Icon[icon];
 
   return (
-    <label className={styles.inputBox}>
+    <label className={cn(styles.inputBox, className)}>
       {label && <span></span>}
       <div className={styles.inputWrapper}>
         {IconComponent && <IconComponent className={styles.icon} />}

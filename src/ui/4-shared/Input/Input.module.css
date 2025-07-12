@@ -1,4 +1,9 @@
+.inputBox {
+  width: 100%;
+}
+
 .input {
+  width: 100%;
   border: none;
   border-radius: var(--radius-15);
 
@@ -6,7 +11,7 @@
   font-size: var(--font-15);
   font-weight: var(--font-400);
 
-  padding: 18px 317px 18px 64px;
+  padding: 18px 64px;
   background-color: var(--input-bg);
 }
 
@@ -20,6 +25,7 @@
 
 .inputWrapper {
   position: relative;
+  width: 100%;
 }
 
 .icon {
