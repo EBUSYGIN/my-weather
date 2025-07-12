@@ -13,6 +13,7 @@
 
   /*font weights */
   --font-400: 400;
+  --font-300: 300;
 
   /*font-colors*/
   --font-ghost: rgba(235, 235, 235, 0.6);
@@ -20,9 +21,29 @@
   --font-white-secondary: #ebebeb;
 }
 
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --primary-bg: linear-gradient(254deg, #160524 0%, #002e78 100%);
-    --input-bg: rgba(235, 235, 235, 0.1);
-  }
-} */
+[data-theme='light'] {
+  --primary-bg: linear-gradient(254deg, #c48ef1 0%, #5076b4 100%);
+  --input-bg: rgba(235, 235, 235, 0.1);
+  --white: #fff;
+  --black: #000;
+
+  /* radiuses */
+  --radius-15: 15px;
+
+  /*font sizes*/
+  --font-15: 15px;
+  --font-20: 20px;
+
+  /*font weights */
+  --font-400: 400;
+
+  /*font-colors*/
+  --font-ghost: rgba(235, 235, 235, 0.6);
+  --font-white-primary: rgba(235, 235, 235, 0.9);
+  --font-white-secondary: #ebebeb;
+}
+
+[data-theme='dark'] {
+  --primary-bg: linear-gradient(254deg, #160524 0%, #002e78 100%);
+  --input-bg: rgba(235, 235, 235, 0.1);
+}

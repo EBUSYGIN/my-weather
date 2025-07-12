@@ -3,6 +3,7 @@ import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import '@app/styles/style.css';
+import { Footer } from '@/ui/1-widgets';
 
 export const metadata: Metadata = {
   title: {
@@ -27,6 +28,7 @@ export default function RootLayout({
     <html lang='en' className={cn(poppins.className)}>
       <body>
         <div>{children}</div>
+        <Footer />
       </body>
     </html>
   );
