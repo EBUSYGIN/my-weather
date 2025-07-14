@@ -1,6 +1,7 @@
 import { Icon, Input } from '@/ui/4-shared';
 
 import styles from './Header.module.css';
+import { ThemeToggler } from '@/ui/2-features';
 
 export function Header() {
   const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -12,14 +13,14 @@ export function Header() {
   return (
     <header className={styles.header}>
       <Icon.Logo />
-      <Input
-        icon='Magnifier'
-        placeholder='Введите город...'
-        className={styles.search}
-      />
+      <div className={styles.search}>
+        <Input icon='Magnifier' placeholder='Введите город...' />
+      </div>
+
       <div className={styles.date}>
         {new Intl.DateTimeFormat('ru-RU', dateFormatOptions).format(new Date())}
       </div>
+      <ThemeToggler />
       <p className={styles.tuneText}>
         Будущее кажется светлым — оставайтесь с нами!
       </p>

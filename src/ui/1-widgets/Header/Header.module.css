@@ -16,6 +16,11 @@
   text-transform: capitalize;
 }
 
+.search {
+  width: 100%;
+  max-width: 512px;
+}
+
 .tuneText {
   font-weight: var(--font-400);
   font-size: var(--font-20);
