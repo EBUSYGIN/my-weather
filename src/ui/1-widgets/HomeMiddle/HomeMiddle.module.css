@@ -1,0 +1,17 @@
+.middle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 235px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.text {
+  font-weight: var(--font-400);
+  font-size: var(--font-18);
+}

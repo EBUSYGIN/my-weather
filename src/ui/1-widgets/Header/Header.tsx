@@ -22,7 +22,7 @@ export function Header() {
       </div>
       <ThemeToggler />
       <p className={styles.tuneText}>
-        Будущее кажется светлым — оставайтесь с нами!
+        Будущее кажется светлым — оставайтесь на позитиве!
       </p>
     </header>
   );
