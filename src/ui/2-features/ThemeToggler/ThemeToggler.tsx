@@ -25,7 +25,9 @@ export function ThemeToggler() {
           onClick={switchTheme}
         ></button>
       </div>
-      <span>{theme === 'light' ? 'Солнечно!' : 'Облачно!'}</span>
+      <span className={styles.text}>
+        {theme === 'light' ? 'Солнечно!' : 'Облачно!'}
+      </span>
     </div>
   );
 }

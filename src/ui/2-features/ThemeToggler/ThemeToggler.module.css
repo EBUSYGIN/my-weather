@@ -1,7 +1,7 @@
 .component {
   display: flex;
-  width: 135px;
-  /* align-items: center; */
+  width: 155px;
+  align-items: center;
   gap: 5px;
 }
 
@@ -34,4 +34,20 @@
 .dark {
   left: 2px;
   top: 3px;
+}
+
+.text {
+  color: var(--white);
+  font-size: var(--font-20);
+  font-weight: var(--font-400);
+}
+
+@media (width <= 768px) {
+  .component {
+    width: 123px;
+  }
+
+  .text {
+    font-size: var(--font-14);
+  }
 }
