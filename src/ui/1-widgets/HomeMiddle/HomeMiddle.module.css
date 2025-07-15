@@ -2,7 +2,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 235px;
+  gap: 200px;
+
+  hyphens: auto;
+  font-weight: var(--font-400);
+  font-size: var(--font-18);
+
+  margin-bottom: 43px;
 }
 
 .textWrapper {
@@ -11,7 +17,19 @@
   gap: 20px;
 }
 
-.text {
-  font-weight: var(--font-400);
-  font-size: var(--font-18);
+@media (width <=964px) {
+  .middle {
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+
+  .image {
+    display: none;
+  }
+  .text {
+    display: none;
+  }
+  .firstParagraph {
+    margin-bottom: 20px;
+  }
 }
