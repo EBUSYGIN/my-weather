@@ -1,0 +1,24 @@
+.title {
+  color: var(--font-white-secondary);
+}
+
+.s {
+  font-weight: var(--font-400);
+  font-size: var(--font-30);
+}
+
+.m {
+  font-weight: var(--font-400);
+  font-size: var(--font-35);
+  color: var(--font-white-primary);
+}
+
+.l {
+  font-weight: var(--font-500);
+  font-size: var(--font-50);
+}
+
+.xl {
+  font-weight: var(--font-500);
+  font-size: var(--font-60);
+}

@@ -10,11 +10,19 @@
 
   /*font sizes*/
   --font-15: 15px;
+  --font-18: 18px;
   --font-20: 20px;
+  --font-30: 30px;
+  --font-35: 35px;
+  --font-40: 40px;
+  --font-50: 50px;
+  --font-60: 60px;
+  --font-100: 100px;
 
   /*font weights */
   --font-400: 400;
   --font-300: 300;
+  --font-500: 500;
 
   /*font-colors*/
   --font-ghost: rgba(235, 235, 235, 0.6);
@@ -25,23 +33,6 @@
 [data-theme='light'] {
   --primary-bg: linear-gradient(254deg, #c48ef1 0%, #5076b4 100%);
   --input-bg: rgba(235, 235, 235, 0.1);
-  --white: #fff;
-  --black: #000;
-
-  /* radiuses */
-  --radius-15: 15px;
-
-  /*font sizes*/
-  --font-15: 15px;
-  --font-20: 20px;
-
-  /*font weights */
-  --font-400: 400;
-
-  /*font-colors*/
-  --font-ghost: rgba(235, 235, 235, 0.6);
-  --font-white-primary: rgba(235, 235, 235, 0.9);
-  --font-white-secondary: #ebebeb;
 }
 
 [data-theme='dark'] {
