@@ -1,0 +1,30 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.temps {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  color: var(--font-white-secondary);
+  font-size: var(--font-25);
+  font-weight: var(--font-400);
+  letter-spacing: 0.1em;
+}
+
+.condition {
+  color: var(--font-white-primary);
+  font-weight: var(--font-400);
+  font-size: var(--font-20);
+}
+
+.tempC::after {
+  content: '\00B0''C';
+}
+
+.tempF::after {
+  content: '\00B0''F';
+}

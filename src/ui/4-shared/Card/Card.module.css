@@ -1,0 +1,13 @@
+.card {
+  max-width: 250px;
+  padding: 40px 20px;
+  background: var(--card-bg);
+  align-items: center;
+  border-radius: var(--radius-10);
+}
+
+@media (width <= 768px) {
+  .card {
+    padding: 10px 20px;
+  }
+}
