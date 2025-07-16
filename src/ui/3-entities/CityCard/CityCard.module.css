@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  min-height: 400px;
 }
 
 .temps {
@@ -27,4 +28,11 @@
 
 .tempF::after {
   content: '\00B0''F';
+}
+
+@media (width <= 768px) {
+  .card {
+    padding: 10px 20px;
+    min-height: 250px;
+  }
 }
