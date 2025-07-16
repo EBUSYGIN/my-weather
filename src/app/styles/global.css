@@ -15,4 +15,12 @@ body {
   flex-direction: column;
 
   min-height: 100vh;
+
+}
+
+@media (width <= 768px) {
+  body {
+    padding: 20px 15px;
+  }
+
 }
