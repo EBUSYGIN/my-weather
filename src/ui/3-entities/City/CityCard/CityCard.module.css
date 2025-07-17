@@ -2,7 +2,12 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  min-height: 400px;
+  min-height: 520px;
+  width: 250px;
+}
+
+.titleWrapper {
+  min-height: 100px;
 }
 
 .temps {
@@ -20,6 +25,8 @@
   color: var(--font-white-primary);
   font-weight: var(--font-400);
   font-size: var(--font-20);
+  width: 100%;
+  text-align: left;
 }
 
 .tempC::after {

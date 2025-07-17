@@ -13,6 +13,17 @@ export class CityHandler {
     try {
       const response = await fetch(CityApi.getWeatherInCity(city));
       const data: ICurrentWeatherResponse = await response.json();
+
+      // return new Promise((resolve) => {
+      //   setTimeout(() => {
+      //     resolve({
+      //       isSuccess: true,
+      //       statusCode: 200,
+      //       status: ResponseStatus.Success,
+      //       data: data,
+      //     });
+      //   }, 3000);
+      // });
       return {
         isSuccess: true,
         statusCode: 200,

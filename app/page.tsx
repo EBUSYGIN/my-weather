@@ -1,5 +1,5 @@
 import { Header, HomeMiddle } from '@/ui/1-widgets';
-import { CityCard } from '@/ui/3-entities';
+import { MajorCities } from '@/ui/1-widgets/MajorCities/MajorCities';
 import { Container } from '@/ui/4-shared';
 
 export default function Home() {
@@ -8,8 +8,8 @@ export default function Home() {
       <Header />
       <Container>
         <HomeMiddle />
+        <MajorCities />
       </Container>
-      <CityCard city='Москва' />
     </>
   );
 }

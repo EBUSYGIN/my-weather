@@ -1,12 +1,12 @@
 import Image from 'next/image';
 
-import { CityCardProps } from './CityCardProps';
 import { CityHandler } from '@/api/city/handler';
 
-import { Card, Icon, Title } from '@/ui/4-shared';
-
-import styles from './CityCard.module.css';
 import { weatherCodeToImage } from '@/assets/config/weatherImageConf';
+import { Card, Title } from '@/ui/4-shared';
+
+import { CityCardProps } from './CityCardProps';
+import styles from './CityCard.module.css';
 
 export async function CityCard({ city }: CityCardProps) {
   const response = await CityHandler.getWeather(city);
@@ -23,9 +23,12 @@ export async function CityCard({ city }: CityCardProps) {
 
   return (
     <Card className={styles.card}>
-      <Title tag='h3' size='s'>
-        {response.data.location.name}
-      </Title>
+      <div className={styles.titleWrapper}>
+        <Title tag='h3' size='s'>
+          {response.data.location.name}
+        </Title>
+      </div>
+
       <Image
         src={
           response.data.current.condition.code
