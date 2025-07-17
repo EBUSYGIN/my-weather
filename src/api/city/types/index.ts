@@ -1,3 +1,5 @@
+import { ImageCodes } from '@/assets/config/weatherImageConf';
+
 /* current weather interfaces for response */
 export interface ICurrentWeatherResponse {
   location: ILocation;
@@ -50,5 +52,5 @@ export interface ICurrent {
 export interface ICondition {
   text: string;
   icon: string;
-  code: number;
+  code: ImageCodes;
 }

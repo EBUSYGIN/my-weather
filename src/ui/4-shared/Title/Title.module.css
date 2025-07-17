@@ -22,3 +22,21 @@
   font-weight: var(--font-500);
   font-size: var(--font-60);
 }
+
+@media (width <=768px) {
+  .s {
+    font-size: var(--font-20);
+  }
+
+  .m {
+    font-size: var(--font-25);
+  }
+
+  .l {
+    font-size: var(--font-30);
+  }
+
+  .xl {
+    font-size: var(--font-35);
+  }
+}
