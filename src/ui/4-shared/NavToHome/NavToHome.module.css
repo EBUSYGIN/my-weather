@@ -1,0 +1,17 @@
+.nav {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.link {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.link > span {
+  margin-top: 2px;
+}
