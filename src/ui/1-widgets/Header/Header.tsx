@@ -2,6 +2,7 @@ import { Icon, Input } from '@/ui/4-shared';
 
 import styles from './Header.module.css';
 import { ThemeToggler } from '@/ui/2-features';
+import Link from 'next/link';
 
 export function Header() {
   const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -12,7 +13,9 @@ export function Header() {
 
   return (
     <header className={styles.header}>
-      <Icon.Logo />
+      <Link href={'/'}>
+        <Icon.Logo />
+      </Link>
       <div className={styles.search}>
         <Input icon='Magnifier' placeholder='Введите город...' />
       </div>

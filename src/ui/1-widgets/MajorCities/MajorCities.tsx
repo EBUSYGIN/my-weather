@@ -13,13 +13,15 @@ export function MajorCities() {
       <Title tag='h1' size='m'>
         Крупные города
       </Title>
-      <div className={styles.list}>
+      <ul className={styles.list}>
         {cities.map((city, index) => (
           <Suspense key={index} fallback={<CityCardSkeleton />}>
-            <CityCard city={city} />
+            <li>
+              <CityCard city={city} />
+            </li>
           </Suspense>
         ))}
-      </div>
+      </ul>
     </>
   );
 }

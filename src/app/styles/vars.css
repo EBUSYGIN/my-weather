@@ -28,12 +28,13 @@
   --font-100: 100px;
 
   /*font weights */
-  --font-400: 400;
   --font-300: 300;
+  --font-400: 400;
   --font-500: 500;
 
   /*font-colors*/
   --font-ghost: rgba(235, 235, 235, 0.6);
+  --font-gray: rgba(235, 235, 235, 0.7);
   --font-white-primary: rgba(235, 235, 235, 0.9);
   --font-white-secondary: #ebebeb;
 }

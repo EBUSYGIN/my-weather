@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { CityHandler } from '@/api/city/handler';
 
@@ -22,30 +23,32 @@ export async function CityCard({ city }: CityCardProps) {
   }
 
   return (
-    <Card className={styles.card}>
-      <div className={styles.titleWrapper}>
-        <Title tag='h3' size='s'>
-          {response.data.location.name}
-        </Title>
-      </div>
+    <Link href={`/${encodeURIComponent(city)}`}>
+      <Card className={styles.card}>
+        <div className={styles.titleWrapper}>
+          <Title tag='h3' size='s'>
+            {response.data.location.name}
+          </Title>
+        </div>
 
-      <Image
-        src={
-          response.data.current.condition.code
-            ? weatherCodeToImage[response.data.current.condition.code]
-            : '/logo.png'
-        }
-        alt={'Солнечно'}
-        width={150}
-        height={150}
-      />
-      <div className={styles.temps}>
-        <span className={styles.tempC}>{response.data.current.temp_c}</span>
-        <span className={styles.tempF}>{response.data.current.temp_f}</span>
-      </div>
-      <div className={styles.condition}>
-        {response.data.current.condition.text}
-      </div>
-    </Card>
+        <Image
+          src={
+            response.data.current.condition.code
+              ? weatherCodeToImage[response.data.current.condition.code]
+              : '/logo.png'
+          }
+          alt={'Солнечно'}
+          width={150}
+          height={150}
+        />
+        <div className={styles.temps}>
+          <span className={styles.tempC}>{response.data.current.temp_c}</span>
+          <span className={styles.tempF}>{response.data.current.temp_f}</span>
+        </div>
+        <div className={styles.condition}>
+          {response.data.current.condition.text}
+        </div>
+      </Card>
+    </Link>
   );
 }

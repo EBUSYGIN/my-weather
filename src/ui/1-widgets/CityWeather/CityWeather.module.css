@@ -1,0 +1,55 @@
+.head {
+  display: flex;
+  gap: 9px;
+  align-items: baseline;
+}
+
+.coords {
+  color: var(--font-white-primary);
+  font-weight: var(--font-400);
+  font-size: var(--font-20);
+}
+
+.date {
+  font-size: var(--font-40);
+  font-weight: var(--font-400);
+  color: var(--font-gray);
+  text-transform: capitalize;
+  margin-bottom: 37px;
+}
+
+.weatherData {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tempWrapper {
+  display: flex;
+  gap: 40px;
+  align-items: baseline;
+}
+
+.temp {
+  font-weight: var(--font-300);
+  font-size: var(--font-100);
+  padding-right: 40px;
+  border-right: 1px solid rgba(235, 235, 235, 0.5);
+}
+
+.temp::after {
+  content: '\00B0''C';
+}
+
+.meta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-self: center;
+}
+
+.country {
+  font-weight: var(--font-300);
+  font-size: var(--font-30);
+  color: var(--font-gray);
+}
