@@ -1,3 +1,7 @@
+.cityWeather {
+  margin-bottom: 38px;
+}
+
 .head {
   display: flex;
   gap: 9px;

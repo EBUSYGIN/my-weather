@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { CityHandler } from '@/api/city/handler';
 
-import { weatherCodeToImage } from '@/assets/config/weatherImageConf';
+import { weatherCodeToImage } from '@/assets/config/weatherImage.config';
 import { Card, Title } from '@/ui/4-shared';
 
 import { CityCardProps } from './CityCardProps';
@@ -11,6 +11,7 @@ import styles from './CityCard.module.css';
 
 export async function CityCard({ city }: CityCardProps) {
   const response = await CityHandler.getWeather(city);
+  console.log(response);
 
   if (!response.isSuccess) {
     return (
