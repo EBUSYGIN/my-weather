@@ -48,12 +48,10 @@ export class CityHandler {
     tp: number
   ): Promise<ISuccessResponse<IWeatherForecastResponse> | IFailedResponse> {
     try {
-      console.log(CityApi.getCityWeatherForecast(city, numberOfDays, tp));
       const response = await fetch(
         CityApi.getCityWeatherForecast(city, numberOfDays, tp)
       );
       const data: IWeatherForecastResponse = await response.json();
-      console.log(data);
 
       return {
         isSuccess: true,

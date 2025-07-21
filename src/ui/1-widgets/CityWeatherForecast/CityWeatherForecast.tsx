@@ -5,7 +5,7 @@ import { CityWeatherForecastProps } from './CityWeatherForecast.props';
 import styles from './CityWeatherForecast.module.css';
 
 export async function CityWeatherForecast({ city }: CityWeatherForecastProps) {
-  const response = await CityHandler.getForecast(city, 8, 24);
+  const response = await CityHandler.getForecast(city, 6, 24);
 
   if (!response.isSuccess) return null;
 

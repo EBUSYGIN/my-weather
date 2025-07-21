@@ -11,7 +11,6 @@ import styles from './CityCard.module.css';
 
 export async function CityCard({ city }: CityCardProps) {
   const response = await CityHandler.getWeather(city);
-  console.log(response);
 
   if (!response.isSuccess) {
     return (
