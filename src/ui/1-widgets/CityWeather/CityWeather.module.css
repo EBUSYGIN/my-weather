@@ -57,3 +57,10 @@
   font-size: var(--font-30);
   color: var(--font-gray);
 }
+
+@media (width < 768) {
+  .weatherData {
+    flex-direction: column-reverse;
+    gap: 20px;
+  }
+}
