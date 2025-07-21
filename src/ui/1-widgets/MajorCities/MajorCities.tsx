@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
 
-import { cities } from '@/assets/config/majorCitiesConf';
+import { cities } from '@/assets/config/majorCities.config';
 
 import { CityCard, CityCardSkeleton } from '@/ui/3-entities/City';
 import { Title } from '@/ui/4-shared';

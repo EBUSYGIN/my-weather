@@ -1,4 +1,5 @@
-import { CityWeather } from '@/ui/1-widgets';
+import { CityWeather, CityWeatherForecast } from '@/ui/1-widgets';
+
 import { NavToHome } from '@/ui/4-shared';
 
 async function CityPage({ params }: { params: Promise<{ city: string }> }) {
@@ -9,6 +10,7 @@ async function CityPage({ params }: { params: Promise<{ city: string }> }) {
     <main>
       <NavToHome />
       <CityWeather city={decodedCity} />
+      <CityWeatherForecast city={decodedCity} />
     </main>
   );
 }

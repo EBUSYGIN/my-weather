@@ -1,16 +1,13 @@
-import { Icon, Input } from '@/ui/4-shared';
-
-import styles from './Header.module.css';
-import { ThemeToggler } from '@/ui/2-features';
 import Link from 'next/link';
 
-export function Header() {
-  const dateFormatOptions: Intl.DateTimeFormatOptions = {
-    weekday: 'short',
-    month: 'long',
-    day: 'numeric',
-  };
+import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
+import { Icon, Input } from '@/ui/4-shared';
+import { ThemeToggler } from '@/ui/2-features';
+
+import styles from './Header.module.css';
+
+export function Header() {
   return (
     <header className={styles.header}>
       <Link href={'/'}>

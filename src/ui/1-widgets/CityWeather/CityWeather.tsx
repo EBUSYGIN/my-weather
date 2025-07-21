@@ -1,6 +1,6 @@
 import Image from 'next/image';
 
-import { weatherCodeToImage } from '@/assets/config/weatherImageConf';
+import { weatherCodeToImage } from '@/assets/config/weatherImage.config';
 
 import { CityHandler } from '@/api/city/handler';
 
@@ -8,22 +8,15 @@ import { Title } from '@/ui/4-shared';
 
 import { CityWeatherProps } from './CityWeather.props';
 import styles from './CityWeather.module.css';
+import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
 export async function CityWeather({ city }: CityWeatherProps) {
-  const dateFormatOptions: Intl.DateTimeFormatOptions = {
-    weekday: 'long',
-    month: 'long',
-    day: 'numeric',
-  };
-
   const response = await CityHandler.getWeather(city);
 
   if (!response.isSuccess) return null;
 
-  console.log(response);
-
   return (
-    <div>
+    <div className={styles.cityWeather}>
       <div className={styles.head}>
         <Title tag='h1' size='xl'>
           {response.data.location.name}
