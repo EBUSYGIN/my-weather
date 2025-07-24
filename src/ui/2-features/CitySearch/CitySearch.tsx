@@ -19,7 +19,7 @@ import styles from './CitySearch.module.css';
 export function CitySearch() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isActive, setIsActive] = useState<boolean>(false);
-  const [cities, setCities] = useState<null | ICitySearch[]>(null);
+  const [cities, setCities] = useState<ICitySearch[]>([]);
   const listRef = useRef<HTMLFormElement>(null);
   const debouncedValue = useDebounce(searchQuery, 400);
 
@@ -43,6 +43,8 @@ export function CitySearch() {
     const handleClickOutside = (event: MouseEvent) => {
       if (listRef.current && !listRef.current.contains(event.target as Node)) {
         setIsActive(false);
+        setSearchQuery('');
+        setCities([]);
       }
     };
 
@@ -63,20 +65,26 @@ export function CitySearch() {
         icon='Magnifier'
         placeholder='Введите город...'
         onChange={onInputChange}
+        value={searchQuery}
         onFocus={() => setIsActive(true)}
       />
       {isActive && (
         <div className={styles.suggestWrapper}>
-          {cities && (
+          {cities.length > 0 ? (
             <ul className={styles.suggestList}>
               {cities.map((city) => (
                 <CityListSuggestion
                   city={city.name}
+                  region={city.region}
                   key={city.id}
                   onClose={setIsActive}
                 />
               ))}
             </ul>
+          ) : (
+            <p className={styles.suggestP}>
+              Начните вводить название города или региона
+            </p>
           )}
         </div>
       )}

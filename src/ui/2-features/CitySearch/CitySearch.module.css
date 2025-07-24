@@ -4,15 +4,29 @@
   min-width: 512px;
 }
 
+.suggestList {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.suggestP {
+  padding: 10px;
+  font-family: var(--font-family);
+  font-weight: var(--font-400);
+  font-size: var(--font-25);
+}
+
 .suggestWrapper {
   position: absolute;
   right: 0;
   top: 74px;
   background: var(--primary-bg);
-  height: 350px;
+  min-height: 350px;
   width: 100%;
 
   border-radius: var(--radius-15);
+  padding: 10px;
 }
 
 @media (width <= 1024px) {
