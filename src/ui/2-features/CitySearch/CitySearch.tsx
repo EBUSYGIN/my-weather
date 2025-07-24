@@ -1,19 +1,26 @@
 'use client';
-import { CityHandler } from '@/api/city/handler';
+import {
+  ChangeEventHandler,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+
 import { ICitySearch } from '@/api/city/types';
 
-import { ChangeEventHandler, useCallback, useEffect, useState } from 'react';
 import { useDebounce } from '@/services/hooks/useDebounce';
-
+import { ISuccessResponse } from '@/services/types/utilTypes';
+import { CityListSuggestion } from '@/ui/3-entities/City';
 import { Input } from '@/ui/4-shared';
 
 import styles from './CitySearch.module.css';
-import { ISuccessResponse } from '@/services/types/utilTypes';
 
 export function CitySearch() {
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [isActive, setIsActive] = useState<boolean>(false);
   const [cities, setCities] = useState<null | ICitySearch[]>(null);
+  const listRef = useRef<HTMLFormElement>(null);
   const debouncedValue = useDebounce(searchQuery, 400);
 
   const getCities = useCallback(async (query: string) => {
@@ -32,27 +39,42 @@ export function CitySearch() {
     if (debouncedValue.length > 0) getCities(debouncedValue);
   }, [debouncedValue]);
 
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (listRef.current && !listRef.current.contains(event.target as Node)) {
+        setIsActive(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   const onInputChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     setSearchQuery(event.target.value);
   };
 
-  console.log(isActive);
-
   return (
-    <form className={styles.search}>
+    <form className={styles.search} ref={listRef}>
       <Input
         icon='Magnifier'
         placeholder='Введите город...'
         onChange={onInputChange}
         onFocus={() => setIsActive(true)}
-        onBlur={() => setIsActive(false)}
       />
       {isActive && (
         <div className={styles.suggestWrapper}>
           {cities && (
             <ul className={styles.suggestList}>
               {cities.map((city) => (
-                <li key={city.id}>{city.name}</li>
+                <CityListSuggestion
+                  city={city.name}
+                  key={city.id}
+                  onClose={setIsActive}
+                />
               ))}
             </ul>
           )}

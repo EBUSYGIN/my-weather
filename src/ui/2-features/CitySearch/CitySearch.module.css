@@ -9,7 +9,7 @@
   right: 0;
   top: 74px;
   background: var(--primary-bg);
-  max-height: 350px;
+  height: 350px;
   width: 100%;
 
   border-radius: var(--radius-15);
