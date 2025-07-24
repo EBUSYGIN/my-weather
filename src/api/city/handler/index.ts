@@ -4,7 +4,11 @@ import {
   ResponseStatus,
 } from '@/services/types/utilTypes';
 import { CityApi } from '../endpoints';
-import { ICurrentWeatherResponse, IWeatherForecastResponse } from '../types';
+import {
+  ICitySearch,
+  ICurrentWeatherResponse,
+  IWeatherForecastResponse,
+} from '../types';
 
 export class CityHandler {
   static async getWeather(
@@ -31,14 +35,12 @@ export class CityHandler {
         data: data,
       };
     } catch (e) {
-      const data: IFailedResponse = {
+      return {
         isSuccess: false,
         statusCode: e instanceof Error ? 500 : 500,
         status: ResponseStatus.Failed,
         errorMessage: e instanceof Error ? e.message : 'Unknown error occurred',
       };
-
-      return data;
     }
   }
 
@@ -60,14 +62,35 @@ export class CityHandler {
         data: data,
       };
     } catch (e) {
-      const data: IFailedResponse = {
+      return {
         isSuccess: false,
         statusCode: e instanceof Error ? 500 : 500,
         status: ResponseStatus.Failed,
         errorMessage: e instanceof Error ? e.message : 'Unknown error occurred',
       };
+    }
+  }
 
-      return data;
+  static async searchForCity(
+    query: string
+  ): Promise<IFailedResponse | ISuccessResponse<ICitySearch[]>> {
+    try {
+      const response = await fetch(CityApi.searchCity(query));
+      const data: ICitySearch[] = await response.json();
+
+      return {
+        isSuccess: true,
+        statusCode: 200,
+        status: ResponseStatus.Success,
+        data: data,
+      };
+    } catch (e) {
+      return {
+        isSuccess: false,
+        statusCode: e instanceof Error ? 500 : 500,
+        status: ResponseStatus.Failed,
+        errorMessage: e instanceof Error ? e.message : 'Unknown error occurred',
+      };
     }
   }
 }

@@ -105,3 +105,13 @@ export interface IForecastday {
   day: IDay;
   astro: IAstro;
 }
+
+export interface ICitySearch {
+  id: number;
+  name: string;
+  region: string;
+  country: string;
+  lat: number;
+  lon: number;
+  url: string;
+}

@@ -48,5 +48,6 @@
   }
   .header {
     gap: 20px 10px;
+    margin-bottom: 15px;
   }
 }

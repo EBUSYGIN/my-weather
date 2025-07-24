@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
 import { Icon, Input } from '@/ui/4-shared';
-import { ThemeToggler } from '@/ui/2-features';
+import { CitySearch, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
 
@@ -13,9 +13,7 @@ export function Header() {
       <Link href={'/'}>
         <Icon.Logo />
       </Link>
-      <div className={styles.search}>
-        <Input icon='Magnifier' placeholder='Введите город...' />
-      </div>
+      <CitySearch />
 
       <div className={styles.date}>
         {new Intl.DateTimeFormat('ru-RU', dateFormatOptions).format(new Date())}
