@@ -11,7 +11,7 @@ export async function CityWeatherForecast({ city }: CityWeatherForecastProps) {
 
   return (
     <li className={styles.list}>
-      {response.data.forecast.forecastday.slice(1).map((forescast) => (
+      {response.data.forecast.forecastday.map((forescast) => (
         <CityWeatherForecastCard
           forecast={forescast}
           key={forescast.date_epoch}
