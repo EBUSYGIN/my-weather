@@ -1,0 +1,14 @@
+.button {
+  padding: 16px;
+}
+
+.ghost {
+  border-radius: var(--radius-15);
+  background-color: var(--input-bg);
+
+  transition: opacity 0.5s;
+}
+
+.ghost:hover {
+  opacity: 0.7;
+}
