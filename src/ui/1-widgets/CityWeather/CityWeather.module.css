@@ -31,14 +31,12 @@
 .tempWrapper {
   display: flex;
   gap: 40px;
-  align-items: baseline;
+  align-items: center;
 }
 
 .temp {
   font-weight: var(--font-300);
   font-size: var(--font-100);
-  padding-right: 40px;
-  border-right: 1px solid rgba(235, 235, 235, 0.5);
 }
 
 .temp::after {
@@ -50,6 +48,8 @@
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  border-left: 1px solid rgba(235, 235, 235, 0.5);
+  padding-left: 40px;
 }
 
 .country {

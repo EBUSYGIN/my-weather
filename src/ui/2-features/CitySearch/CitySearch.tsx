@@ -21,7 +21,7 @@ export function CitySearch() {
   const [isActive, setIsActive] = useState<boolean>(false);
   const [cities, setCities] = useState<ICitySearch[]>([]);
   const listRef = useRef<HTMLFormElement>(null);
-  const debouncedValue = useDebounce(searchQuery, 400);
+  const debouncedValue = useDebounce(searchQuery, 300);
 
   const getCities = useCallback(async (query: string) => {
     try {
