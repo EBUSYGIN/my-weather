@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
-import { Icon, Input } from '@/ui/4-shared';
+import { Icon } from '@/ui/4-shared';
 import { CitySearch, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
