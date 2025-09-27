@@ -1,4 +1,6 @@
-module.exports = {
+import type { NextConfig } from 'next';
+
+const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
@@ -8,12 +10,13 @@ module.exports = {
       },
     ],
   },
-  turbopack: {
-    rules: {
-      '*.svg': {
-        loaders: ['@svgr/webpack'],
-        as: '*.js',
-      },
-    },
+  webpack: (config) => {
+    config.module?.rules?.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    });
+    return config;
   },
 };
+
+export default nextConfig;
