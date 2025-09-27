@@ -3,23 +3,64 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
+import { IGeoWeatherButtonState } from './GeoWeatherButton.types';
+import { geolocationHandler } from '@/api/geolocation/handler';
+import { geolocationService } from '@/services/geolocation-service/geolocation';
+
 import { Button } from '@/ui/4-shared';
 
 export function GeoWeatherButton() {
   const [userGeolocation, setUserGeolocation] =
-    useState<GeolocationCoordinates | null>(null);
+    useState<IGeoWeatherButtonState>({
+      geolocation: null,
+      error: null,
+      city: null,
+      isLoading: false,
+    });
 
   useEffect(() => {
-    navigator.geolocation.getCurrentPosition((position) => {
-      setUserGeolocation(position.coords);
-    });
+    const getUserGeolocation = async () => {
+      try {
+        setUserGeolocation((userGeolocation) => ({
+          ...userGeolocation,
+          isLoading: true,
+        }));
+
+        const coordinatesObject = await geolocationService.getUserGeolocation();
+        const city = await geolocationHandler.getCityByCoords(
+          coordinatesObject
+        );
+
+        setUserGeolocation((userGeolocation) => ({
+          ...userGeolocation,
+          geolocation: coordinatesObject,
+          isLoading: false,
+          city: city,
+        }));
+      } catch (e) {
+        setUserGeolocation((userGeolocation) => ({
+          ...userGeolocation,
+          error: 'error',
+          isLoading: false,
+        }));
+      }
+    };
+
+    getUserGeolocation();
   }, []);
 
-  console.log(userGeolocation);
-
   return (
-    <Link href={'/'}>
-      <Button appearance='ghost'>Погода в моем месте</Button>
+    <Link
+      href={`/${userGeolocation.city}`}
+      style={
+        userGeolocation.error || userGeolocation.isLoading
+          ? { pointerEvents: 'none' }
+          : {}
+      }
+    >
+      <Button appearance='ghost' disabled={!userGeolocation.error}>
+        {userGeolocation.error ? 'Проблемы геолокации' : 'Погода в моем месте'}
+      </Button>
     </Link>
   );
 }

@@ -35,7 +35,7 @@ export async function CityWeather({ city }: CityWeatherProps) {
         <div className={styles.tempWrapper}>
           <div className={styles.temp}>{response.data.current.temp_c}</div>
           <div className={styles.meta}>
-            <Title tag='h2' size='l'>
+            <Title tag='h2' size='l' className={styles.title}>
               {response.data.current.condition.text}
             </Title>
             <span className={styles.country}>
