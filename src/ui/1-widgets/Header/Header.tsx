@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
 import { Icon } from '@/ui/4-shared';
-import { CitySearch, ThemeToggler } from '@/ui/2-features';
+import { CitySearch, GeoWeatherButton, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
 
@@ -14,7 +14,7 @@ export function Header() {
         <Icon.Logo />
       </Link>
       <CitySearch />
-
+      <GeoWeatherButton />
       <div className={styles.date}>
         {new Intl.DateTimeFormat('ru-RU', dateFormatOptions).format(new Date())}
       </div>

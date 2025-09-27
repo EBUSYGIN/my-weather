@@ -67,6 +67,8 @@ export function CitySearch() {
         onChange={onInputChange}
         value={searchQuery}
         onFocus={() => setIsActive(true)}
+        name='Поиск города'
+        suppressHydrationWarning
       />
       {isActive && (
         <div className={styles.suggestWrapper}>
