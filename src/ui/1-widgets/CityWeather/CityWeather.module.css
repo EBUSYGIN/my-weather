@@ -58,7 +58,7 @@
   color: var(--font-gray);
 }
 
-@media (width < 880) {
+@media (width <= 880px) {
   .weatherData {
     flex-direction: column-reverse;
     gap: 20px;
