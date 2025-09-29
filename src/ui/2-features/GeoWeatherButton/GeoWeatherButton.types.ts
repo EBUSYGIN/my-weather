@@ -1,6 +1,6 @@
 export interface IGeoWeatherButtonState {
   geolocation: GeolocationCoordinates | null;
-  error: 'error' | null;
+  error: boolean;
   city: null | string;
   isLoading: boolean;
 }

@@ -13,7 +13,7 @@ export function GeoWeatherButton() {
   const [userGeolocation, setUserGeolocation] =
     useState<IGeoWeatherButtonState>({
       geolocation: null,
-      error: null,
+      error: false,
       city: null,
       isLoading: false,
     });
@@ -40,7 +40,7 @@ export function GeoWeatherButton() {
       } catch (e) {
         setUserGeolocation((userGeolocation) => ({
           ...userGeolocation,
-          error: 'error',
+          error: true,
           isLoading: false,
         }));
       }
@@ -58,7 +58,7 @@ export function GeoWeatherButton() {
           : {}
       }
     >
-      <Button appearance='ghost' disabled={!userGeolocation.error}>
+      <Button appearance='ghost' disabled={userGeolocation.error}>
         {userGeolocation.error ? 'Проблемы геолокации' : 'Погода в моем месте'}
       </Button>
     </Link>

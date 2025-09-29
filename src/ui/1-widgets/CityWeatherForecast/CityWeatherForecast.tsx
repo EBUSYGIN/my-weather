@@ -7,7 +7,11 @@ import styles from './CityWeatherForecast.module.css';
 export async function CityWeatherForecast({ city }: CityWeatherForecastProps) {
   const response = await CityHandler.getForecast(city, 6, 24);
 
-  if (!response.isSuccess) return null;
+  if (!response.isSuccess || !response.data?.forecast?.forecastday?.length) return null;
+
+  // console.log(response)
+
+  // console.log(response.data.forecast.forecastday);
 
   return (
     <li className={styles.list}>

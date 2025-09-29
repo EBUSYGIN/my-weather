@@ -13,7 +13,7 @@ import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 export async function CityWeather({ city }: CityWeatherProps) {
   const response = await CityHandler.getWeather(city);
 
-  if (!response.isSuccess) return null;
+  if (!response.isSuccess || !response.data?.location || !response.data?.current) return null;
 
   return (
     <div className={styles.cityWeather}>
@@ -46,11 +46,7 @@ export async function CityWeather({ city }: CityWeatherProps) {
         <Image
           width={200}
           height={200}
-          src={
-            response.data.current.condition.code
-              ? weatherCodeToImage[response.data.current.condition.code]
-              : '/logo.png'
-          }
+          src={weatherCodeToImage[response.data.current.condition.code] ?? '/logo.png'}
           alt='Изображение погоды'
         />
       </div>

@@ -16,7 +16,7 @@ export class CityHandler {
   ): Promise<ISuccessResponse<ICurrentWeatherResponse> | IFailedResponse> {
     try {
       const response = await fetch(CityApi.getWeatherInCity(city));
-      const data: ICurrentWeatherResponse = await response.json();
+      const data = await response.json();
 
       // return new Promise((resolve) => {
       //   setTimeout(() => {
@@ -28,11 +28,20 @@ export class CityHandler {
       //     });
       //   }, 3000);
       // });
+      if (!response.ok || (data && data.error)) {
+        return {
+          isSuccess: false,
+          statusCode: response.status,
+          status: ResponseStatus.Failed,
+          errorMessage: data?.error?.message ?? 'Request failed',
+        };
+      }
+
       return {
         isSuccess: true,
-        statusCode: 200,
+        statusCode: response.status,
         status: ResponseStatus.Success,
-        data: data,
+        data: data as ICurrentWeatherResponse,
       };
     } catch (e) {
       return {
@@ -53,13 +62,22 @@ export class CityHandler {
       const response = await fetch(
         CityApi.getCityWeatherForecast(city, numberOfDays, tp)
       );
-      const data: IWeatherForecastResponse = await response.json();
+      const data = await response.json();
+
+      if (!response.ok || (data && data.error)) {
+        return {
+          isSuccess: false,
+          statusCode: response.status,
+          status: ResponseStatus.Failed,
+          errorMessage: data?.error?.message ?? 'Request failed',
+        };
+      }
 
       return {
         isSuccess: true,
-        statusCode: 200,
+        statusCode: response.status,
         status: ResponseStatus.Success,
-        data: data,
+        data: data as IWeatherForecastResponse,
       };
     } catch (e) {
       return {

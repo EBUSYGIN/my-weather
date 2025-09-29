@@ -2,8 +2,8 @@ import { CityWeather, CityWeatherForecast } from '@/ui/1-widgets';
 
 import { NavToHome } from '@/ui/4-shared';
 
-async function CityPage({ params }: { params: Promise<{ city: string }> }) {
-  const { city } = await params;
+async function CityPage({ params }: { params: Promise<{ city: string } >}) {
+  const { city } = await  params;
   const decodedCity = decodeURIComponent(city);
 
   return (
