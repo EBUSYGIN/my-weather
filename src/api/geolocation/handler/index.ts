@@ -1,4 +1,3 @@
-import { IFailedResponse, ResponseStatus } from '@/services/types/utilTypes';
 import { geolocationApi } from '../api';
 
 const getCityByCoords = async (
@@ -23,7 +22,6 @@ const getCityByCoords = async (
 
     return data.suggestions[0].data.city;
   } catch (e) {
-    console.log('here');
     throw new Error(e instanceof Error ? e.message : 'Непредвиденная ошибка');
   }
 };
