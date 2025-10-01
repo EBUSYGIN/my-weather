@@ -20,8 +20,10 @@ const getCityByCoords = async (
       }
     );
     const data = await serverResponse.json();
+
     return data.suggestions[0].data.city;
   } catch (e) {
+    console.log('here');
     throw new Error(e instanceof Error ? e.message : 'Непредвиденная ошибка');
   }
 };
