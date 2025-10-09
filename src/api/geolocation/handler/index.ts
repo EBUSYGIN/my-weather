@@ -1,3 +1,4 @@
+import { GEOLOCATION_KEY } from '@/assets/config/api';
 import { geolocationApi } from '../api';
 
 const getCityByCoords = async ({
@@ -8,20 +9,19 @@ const getCityByCoords = async ({
   latitude: string;
 }): Promise<string> => {
   try {
-    const serverResponse = await fetch(
-      geolocationApi.getCityByCoords(latitude, longitude),
-      {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `Token ${process.env.GEOLOCATION_KEY}`,
-        },
-        body: JSON.stringify({
-          lat: latitude,
-          lon: longitude,
-        }),
-      }
-    );
+    const serverResponse = await fetch(geolocationApi.getCityByCoords(), {
+      method: 'POST',
+      mode: 'cors',
+      headers: {
+        'content-type': 'application/json',
+        Authorization: `Token ${GEOLOCATION_KEY}`,
+      },
+      body: JSON.stringify({
+        lat: latitude,
+        lon: longitude,
+      }),
+    });
+    console.log(serverResponse);
     const data = await serverResponse.json();
 
     return data.suggestions[0].data.city;

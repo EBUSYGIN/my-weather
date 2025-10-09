@@ -27,9 +27,13 @@ export function GeoWeatherButton() {
         }));
 
         const coordinatesObject = await geolocationService.getUserGeolocation();
-        const city = await geolocationHandler.getCityByCoords(
-          coordinatesObject
+        const response = await fetch(
+          `/api/getCityByCoords?longitude=${coordinatesObject.longitude}&latitude=${coordinatesObject.latitude}`
         );
+
+        const city = await response.json();
+
+        console.log(city);
 
         setUserGeolocation((userGeolocation) => ({
           ...userGeolocation,
