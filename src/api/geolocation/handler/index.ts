@@ -1,20 +1,24 @@
 import { geolocationApi } from '../api';
 
-const getCityByCoords = async (
-  coordsObject: GeolocationCoordinates
-): Promise<string> => {
+const getCityByCoords = async ({
+  longitude,
+  latitude,
+}: {
+  longitude: string;
+  latitude: string;
+}): Promise<string> => {
   try {
     const serverResponse = await fetch(
-      geolocationApi.getCityByCoords(coordsObject),
+      geolocationApi.getCityByCoords(latitude, longitude),
       {
         method: 'POST',
         headers: {
           'content-type': 'application/json',
-          Authorization: `Token ${process.env.NEXT_PUBLIC_DOMAIN3}`,
+          Authorization: `Token ${process.env.GEOLOCATION_KEY}`,
         },
         body: JSON.stringify({
-          lat: coordsObject.latitude,
-          lon: coordsObject.longitude,
+          lat: latitude,
+          lon: longitude,
         }),
       }
     );

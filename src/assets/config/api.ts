@@ -1,2 +1,2 @@
-export const API_URL = process.env.NEXT_PUBLIC_DOMAIN;
-export const GEOLOCATION_API_URL = process.env.NEXT_PUBLIC_DOMAIN2;
+export const API_URL = process.env.WEATHER_API;
+export const GEOLOCATION_API_URL = process.env.GEOLOCATION_API;
