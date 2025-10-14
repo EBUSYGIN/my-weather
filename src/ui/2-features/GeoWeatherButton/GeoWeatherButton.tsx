@@ -13,7 +13,7 @@ export function GeoWeatherButton() {
   const [userGeolocation, setUserGeolocation] =
     useState<IGeoWeatherButtonState>({
       geolocation: null,
-      error: null,
+      error: false,
       city: null,
       isLoading: false,
     });
@@ -27,9 +27,13 @@ export function GeoWeatherButton() {
         }));
 
         const coordinatesObject = await geolocationService.getUserGeolocation();
-        const city = await geolocationHandler.getCityByCoords(
-          coordinatesObject
+        const response = await fetch(
+          `/api/getCityByCoords?longitude=${coordinatesObject.longitude}&latitude=${coordinatesObject.latitude}`
         );
+
+        const city = await response.json();
+
+        console.log(city);
 
         setUserGeolocation((userGeolocation) => ({
           ...userGeolocation,
@@ -40,7 +44,7 @@ export function GeoWeatherButton() {
       } catch (e) {
         setUserGeolocation((userGeolocation) => ({
           ...userGeolocation,
-          error: 'error',
+          error: true,
           isLoading: false,
         }));
       }
@@ -58,7 +62,7 @@ export function GeoWeatherButton() {
           : {}
       }
     >
-      <Button appearance='ghost' disabled={!userGeolocation.error}>
+      <Button appearance='ghost' disabled={userGeolocation.error}>
         {userGeolocation.error ? 'Проблемы геолокации' : 'Погода в моем месте'}
       </Button>
     </Link>
