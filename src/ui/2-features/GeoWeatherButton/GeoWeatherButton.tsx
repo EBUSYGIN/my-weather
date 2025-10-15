@@ -14,7 +14,7 @@ export function GeoWeatherButton() {
     useState<IGeoWeatherButtonState>({
       geolocation: null,
       error: false,
-      city: null,
+      city: '',
       isLoading: false,
     });
 
@@ -31,16 +31,22 @@ export function GeoWeatherButton() {
           `/api/getCityByCoords?longitude=${coordinatesObject.longitude}&latitude=${coordinatesObject.latitude}`
         );
 
-        const city = await response.json();
-
-        console.log(city);
-
-        setUserGeolocation((userGeolocation) => ({
-          ...userGeolocation,
-          geolocation: coordinatesObject,
-          isLoading: false,
-          city: city,
-        }));
+        if (response.ok) {
+          const city = await response.json();
+          setUserGeolocation((userGeolocation) => ({
+            ...userGeolocation,
+            geolocation: coordinatesObject,
+            isLoading: false,
+            city: city,
+          }));
+        } else {
+          setUserGeolocation((userGeolocation) => ({
+            ...userGeolocation,
+            geolocation: coordinatesObject,
+            error: true,
+            isLoading: false,
+          }));
+        }
       } catch (e) {
         setUserGeolocation((userGeolocation) => ({
           ...userGeolocation,

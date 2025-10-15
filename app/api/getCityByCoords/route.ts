@@ -13,9 +13,10 @@ export async function GET(request: NextRequest) {
     });
     return Response.json(city);
   } catch (e) {
-    return Response.json(
-      { error: 'Ошибка при поиске города' },
-      { status: 500 }
-    );
+    return Response.json({
+      message: 'Ошибка при поиске города',
+      code: 500,
+      ok: false,
+    });
   }
 }
