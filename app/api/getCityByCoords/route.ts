@@ -4,7 +4,6 @@ import { NextRequest } from 'next/server';
 export async function GET(request: NextRequest) {
   const latitude = request.nextUrl.searchParams.get('latitude') || '';
   const longitude = request.nextUrl.searchParams.get('longitude') || '';
-  console.log(longitude, latitude);
 
   try {
     const city = await geolocationHandler.getCityByCoords({
@@ -13,10 +12,16 @@ export async function GET(request: NextRequest) {
     });
     return Response.json(city);
   } catch (e) {
-    return Response.json({
-      message: 'Ошибка при поиске города',
-      code: 500,
-      ok: false,
-    });
+    return Response.json(
+      {
+        message: 'Ошибка при поиске города',
+        code: 500,
+        ok: false,
+      },
+      {
+        status: 500,
+        statusText: 'Internal Server Error',
+      }
+    );
   }
 }

@@ -21,7 +21,6 @@ const getCityByCoords = async ({
         lon: longitude,
       }),
     });
-    console.log(serverResponse);
     const data = await serverResponse.json();
 
     return data.suggestions[0].data.city;
