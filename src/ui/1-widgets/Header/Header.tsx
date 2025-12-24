@@ -10,9 +10,7 @@ import styles from './Header.module.css';
 export function Header() {
   return (
     <header className={styles.header}>
-      <Link href={'/'}>
-        <Icon.Logo />
-      </Link>
+      <Link href={'/'}>{/* <Icon.Logo /> */}</Link>
       <CitySearch />
       <GeoWeatherButton />
       <div className={styles.date}>

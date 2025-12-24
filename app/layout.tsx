@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang='en' className={cn(poppins.className)}>
+    <html className={cn(poppins.className)}>
       <body>
         <Header />
         <Container>{children}</Container>

@@ -10,14 +10,21 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  turbopack: {},
-  webpack: (config) => {
-    config.module?.rules?.push({
-      test: /\.svg$/,
-      use: ['@svgr/webpack'],
-    });
-    return config;
+  turbopack: {
+    rules: {
+      '*.svg': {
+        loaders: ['@svgr/webpack'], // SVG → React компонент
+        as: '*.js',
+      },
+    },
   },
+  // webpack: (config) => {
+  //   config.module?.rules?.push({
+  //     test: /\.svg$/,
+  //     use: ['@svgr/webpack'],
+  //   });
+  //   return config;
+  // },
 };
 
 export default nextConfig;

@@ -1,3 +1,3 @@
-export * from './ThemeToggler/ThemeToggler';
-export * from './CitySearch/CitySearch';
-export * from './GeoWeatherButton/GeoWeatherButton';
+export { ThemeToggler } from './ThemeToggler/ThemeToggler';
+export { CitySearch } from './CitySearch/CitySearch';
+export { GeoWeatherButton } from './GeoWeatherButton/GeoWeatherButton';

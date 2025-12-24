@@ -1,6 +1,6 @@
-export * from './Header/Header';
-export * from './Footer/Footer';
-export * from './HomeMiddle/HomeMiddle';
-export * from './MajorCities/MajorCities';
-export * from './CityWeather/CityWeather';
-export * from './CityWeatherForecast/CityWeatherForecast';
+export { Header } from './Header/Header';
+export { Footer } from './Footer/Footer';
+export { HomeMiddle } from './HomeMiddle/HomeMiddle';
+export { MajorCities } from './MajorCities/MajorCities';
+export { CityWeather } from './CityWeather/CityWeather';
+export { CityWeatherForecast } from './CityWeatherForecast/CityWeatherForecast';
