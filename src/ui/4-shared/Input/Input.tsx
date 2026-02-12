@@ -17,13 +17,13 @@ export function Input({
 
   return (
     <label className={cn(styles.inputBox, className)}>
-      {label && <span></span>}
+      {label && <span>{label}</span>}
       <div className={styles.inputWrapper}>
         {IconComponent && <IconComponent className={styles.icon} />}
         <input className={styles.input} placeholder={placeholder} {...props} />
       </div>
 
-      {error && <span></span>}
+      {error && <span className={styles.error}>{error}</span>}
     </label>
   );
 }

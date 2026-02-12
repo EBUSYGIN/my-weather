@@ -33,3 +33,7 @@
   left: 28px;
   top: 14px;
 }
+
+.error {
+  color: var(--error);
+}
