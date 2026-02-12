@@ -1,0 +1,28 @@
+.authLayout {
+  display: flex;
+  width: 100%;
+  height: 95vh;
+}
+
+.image,
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.content {
+  border-left: 1px solid var(--font-white-secondary);
+}
+
+@media (width <= 768px) {
+  .image {
+    display: none;
+  }
+
+  .content {
+    border: none
+  }
+}
