@@ -3,8 +3,6 @@ import cn from 'classnames';
 import type { Metadata } from 'next';
 import { Poppins } from 'next/font/google';
 import '@app/styles/style.css';
-import { Footer, Header } from '@/ui/1-widgets';
-import { Container } from '@/ui/4-shared';
 
 export const metadata: Metadata = {
   title: {

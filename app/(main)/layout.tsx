@@ -8,10 +8,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <main>
+    <>
       <Header />
       <Container>{children}</Container>
       <Footer />
-    </main>
+    </>
   );
 }
