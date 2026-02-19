@@ -1,6 +1,5 @@
 'use client';
-
-
+import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
@@ -10,23 +9,27 @@ import { login } from '@/api/user/handlers';
 import { LoginFormType, LoginFormSchema } from '@/api/user/types';
 
 import styles from './LoginForm.module.css';
-import { zodResolver } from '@hookform/resolvers/zod';
-
-
-
 
 export function LoginForm() {
   const {
     register,
     handleSubmit,
     formState: { errors },
+    setError,
   } = useForm<LoginFormType>({
     resolver: zodResolver(LoginFormSchema),
     mode: 'onBlur',
   });
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
-    await login(data)
+    try {
+      await login(data);
+    } catch (e) {
+      if (e instanceof Error)
+        setError('password', {
+          message: e.message,
+        });
+    }
   };
 
   return (

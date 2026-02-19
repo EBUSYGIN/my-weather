@@ -20,5 +20,5 @@ export const fetchApi = async (url: string, method: methods, body: unknown) => {
     throw new Error(error.message || 'Ошибка запроса');
   }
 
-  return response.json();
+  return await response.json();
 };
