@@ -1,5 +1,6 @@
 .inputBox {
   width: 100%;
+  padding-bottom: 20px;
 }
 
 .input {
@@ -36,4 +37,5 @@
 
 .error {
   color: var(--error);
+  position: absolute;
 }
