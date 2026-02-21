@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, Input, Title } from '@/ui/4-shared';
 
-import { login } from '@/api/user/handlers';
+import { loginUser } from '@/api/user/handlers';
 import { LoginFormType, LoginFormSchema } from '@/api/user/types';
 
 import styles from './LoginForm.module.css';
@@ -23,12 +23,11 @@ export function LoginForm() {
 
   const onSubmit: SubmitHandler<LoginFormType> = async (data) => {
     try {
-      await login(data);
+      await loginUser(data);
     } catch (e) {
-      if (e instanceof Error)
-        setError('password', {
-          message: e.message,
-        });
+      setError('password', {
+        message: e instanceof Error ? e.message : 'Ошибка при входе',
+      });
     }
   };
 
@@ -56,7 +55,7 @@ export function LoginForm() {
       </Button>
       <div className={styles.navActions}>
         <p>Нет аккаунта?</p>
-        <Link href='/register'>Зарегистрироваться</Link>
+        <Link href='/registration'>Зарегистрироваться</Link>
       </div>
     </form>
   );

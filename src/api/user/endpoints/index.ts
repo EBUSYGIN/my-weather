@@ -1,5 +1,6 @@
 import { NODE_API } from '@/assets/config/api';
 
 export const userApi = {
-  login: () => `${NODE_API}/users/login`
-}
+  login: () => `${NODE_API}/users/login`,
+  register: () => `${NODE_API}/users/register`,
+};
