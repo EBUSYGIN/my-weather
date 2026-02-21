@@ -3,11 +3,11 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-import { IGeoWeatherButtonState } from './GeoWeatherButton.types';
-import { geolocationHandler } from '@/api/geolocation/handler';
 import { geolocationService } from '@/services/geolocation-service/geolocation';
 
 import { Button } from '@/ui/4-shared';
+
+import { IGeoWeatherButtonState } from './GeoWeatherButton.types';
 
 export function GeoWeatherButton() {
   const [userGeolocation, setUserGeolocation] =
@@ -28,7 +28,7 @@ export function GeoWeatherButton() {
 
         const coordinatesObject = await geolocationService.getUserGeolocation();
         const response = await fetch(
-          `/api/getCityByCoords?longitude=${coordinatesObject.longitude}&latitude=${coordinatesObject.latitude}`
+          `/api/getCityByCoords?longitude=${coordinatesObject.longitude}&latitude=${coordinatesObject.latitude}`,
         );
 
         if (response.ok) {
