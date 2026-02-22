@@ -7,7 +7,7 @@ export const LoginFormSchema = z.object({
 
 export type LoginFormType = z.infer<typeof LoginFormSchema>;
 
-export interface ILoginResponse {
+export interface ITokenResponse {
   accessToken: string;
   refreshToken: string;
 }

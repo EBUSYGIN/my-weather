@@ -1,39 +1,28 @@
 'use server';
 
 import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
 import { fetchApi } from '@/assets/config/fetch';
 import { userApi } from '../endpoints';
 import {
-  ILoginResponse,
+  ITokenResponse,
   IUserResponse,
   LoginFormType,
   RegisterFormType,
 } from '../types';
+import { cookieManager } from '@/assets/config/cookieStorage';
 
 export const loginUser = async (userData: LoginFormType) => {
   try {
-    const data: ILoginResponse = await fetchApi(
+    const data: ITokenResponse = await fetchApi(
       userApi.login(),
       'POST',
       userData,
     );
     const { accessToken, refreshToken } = data;
-    const cookieStore = await cookies();
-    cookieStore.set('accessToken', accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
+    await cookieManager.setCookie('accessToken', accessToken, {
       maxAge: 60 * 15,
     });
-    cookieStore.set('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
+    await cookieManager.setCookie('refreshToken', refreshToken);
   } catch (e) {
     if (e instanceof Error) throw e;
     throw new Error('Ошибка при входе');
@@ -49,21 +38,10 @@ export const registerUser = async (userData: RegisterFormType) => {
       userData,
     );
     const { accessToken, refreshToken } = data;
-    const cookieStore = await cookies();
-    cookieStore.set('accessToken', accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
+    await cookieManager.setCookie('accessToken', accessToken, {
       maxAge: 60 * 15,
     });
-    cookieStore.set('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
+    await cookieManager.setCookie('refreshToken', refreshToken);
   } catch (e) {
     if (e instanceof Error) throw e;
     throw new Error('Ошибка при регистрации');
