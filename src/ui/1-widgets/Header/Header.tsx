@@ -1,5 +1,9 @@
+'use client';
+
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+import { userHandlers } from '@/api/user/handlers';
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
 import { Icon } from '@/ui/4-shared';
@@ -7,7 +11,22 @@ import { CitySearch, GeoWeatherButton, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
 
-export async function Header() {
+export function Header() {
+  const [state, setState] = useState<any>(null);
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const data = await userHandlers.getUserInfo();
+        setState(data);
+      } catch (e) {
+        console.log(e);
+      }
+    };
+    getUser();
+  }, []);
+
+  console.log(state);
+
   return (
     <header className={styles.header}>
       <div className={styles.info}>

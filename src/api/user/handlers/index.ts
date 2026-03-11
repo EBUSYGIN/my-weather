@@ -1,50 +1,22 @@
-'use server';
-
-import { redirect } from 'next/navigation';
-import { fetchApi } from '@/assets/config/fetch';
+import axiosInstance from '@/assets/config/axios/axios-instance';
 import { userApi } from '../endpoints';
-import {
-  ITokenResponse,
-  IUserResponse,
-  LoginFormType,
-  RegisterFormType,
-} from '../types';
-import { cookieManager } from '@/assets/config/cookieStorage';
+import { IUserResponse } from '../types';
 
-export const loginUser = async (userData: LoginFormType) => {
+const getUserInfo = async () => {
   try {
-    const data: ITokenResponse = await fetchApi(
-      userApi.login(),
-      'POST',
-      userData,
+    const response = await axiosInstance.get<IUserResponse>(
+      userApi.nextGetInfo(),
     );
-    const { accessToken, refreshToken } = data;
-    await cookieManager.setCookie('accessToken', accessToken, {
-      maxAge: 60 * 15,
-    });
-    await cookieManager.setCookie('refreshToken', refreshToken);
+    console.log(response);
+    const data = response.data;
+    console.log(data);
+    return data;
   } catch (e) {
     if (e instanceof Error) throw e;
-    throw new Error('Ошибка при входе');
+    throw new Error('Ошибка запроса данных');
   }
-  redirect('/');
 };
 
-export const registerUser = async (userData: RegisterFormType) => {
-  try {
-    const data: IUserResponse = await fetchApi(
-      userApi.register(),
-      'POST',
-      userData,
-    );
-    const { accessToken, refreshToken } = data;
-    await cookieManager.setCookie('accessToken', accessToken, {
-      maxAge: 60 * 15,
-    });
-    await cookieManager.setCookie('refreshToken', refreshToken);
-  } catch (e) {
-    if (e instanceof Error) throw e;
-    throw new Error('Ошибка при регистрации');
-  }
-  redirect('/');
+export const userHandlers = {
+  getUserInfo,
 };

@@ -17,7 +17,7 @@ export class CookieManager {
     this.config = {
       maxAge: 60 * 60 * 24 * 7,
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
       ...config,
@@ -35,6 +35,11 @@ export class CookieManager {
     };
     const store = await cookies();
     store.set(name, item, options);
+  };
+
+  getCookie = async (name: string) => {
+    const store = await cookies();
+    return store.get(name)?.value;
   };
 }
 
