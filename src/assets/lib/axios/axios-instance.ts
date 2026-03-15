@@ -1,6 +1,22 @@
 import axios, { AxiosError, InternalAxiosRequestConfig } from 'axios';
 import { refreshTokens } from './refresh';
 
+let isRefreshing = false;
+
+let failedQueue: {
+  resolve: (value?: unknown) => void;
+  reject: (error?: unknown) => void;
+}[] = [];
+
+const processQueue = (error: unknown) => {
+  failedQueue.forEach((prom) => {
+    if (error) prom.reject(error);
+    else prom.resolve(true);
+  });
+
+  failedQueue = [];
+};
+
 const axiosInstance = axios.create({
   baseURL: '/api',
   withCredentials: true,
@@ -53,21 +69,5 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error);
   },
 );
-
-let isRefreshing = false;
-
-let failedQueue: {
-  resolve: (value?: unknown) => void;
-  reject: (error?: unknown) => void;
-}[] = [];
-
-const processQueue = (error: unknown) => {
-  failedQueue.forEach((prom) => {
-    if (error) prom.reject(error);
-    else prom.resolve(true);
-  });
-
-  failedQueue = [];
-};
 
 export default axiosInstance;

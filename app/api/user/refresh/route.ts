@@ -1,6 +1,6 @@
-import { userApi } from '@/api/user/endpoints';
+import { serverUserApi } from '@/api/user/endpoints';
 import { ITokenResponse } from '@/api/user/types';
-import { fetchApi } from '@/assets/config/fetch';
+import { fetchApi } from '@/assets/lib/fetch/fetch';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -12,13 +12,11 @@ export async function GET(request: NextRequest) {
     );
 
   try {
-    const response = await fetchApi(
-      userApi.updateTokens(),
-      'POST',
-      undefined,
-      undefined,
-      refreshToken.value,
-    );
+    const response = await fetchApi({
+      url: serverUserApi.updateTokens(),
+      method: 'POST',
+      token: refreshToken.value,
+    });
     const tokens: ITokenResponse = await response.json();
     const nextResponse = NextResponse.json(
       { message: 'Токены обновлены' },
@@ -30,13 +28,15 @@ export async function GET(request: NextRequest) {
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
       path: '/',
+      maxAge: 60 * 5, // in seconds
     });
 
     nextResponse.cookies.set('refreshToken', tokens.refreshToken, {
       httpOnly: true,
       secure: process.env.NODE_ENV === 'production',
       sameSite: 'lax',
-      path: '/',
+      path: '/refresh',
+      maxAge: 60 * 60 * 24 * 7, // in seconds == 7 days
     });
 
     return nextResponse;

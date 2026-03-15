@@ -1,13 +1,17 @@
 'use server';
 import { redirect } from 'next/navigation';
-import { userApi } from '../endpoints';
+import { serverUserApi } from '../endpoints';
 import { IUserResponse, LoginFormType, RegisterFormType } from '../types';
-import { cookieManager } from '@/assets/config/cookieStorage';
-import { fetchApi } from '@/assets/config/fetch';
+import { cookieManager } from '@/assets/lib/cookies/cookieStorage';
+import { fetchApi } from '@/assets/lib/fetch/fetch';
 
 export const loginUser = async (userData: LoginFormType) => {
   try {
-    const response = await fetchApi(userApi.login(), 'POST', userData);
+    const response = await fetchApi({
+      url: serverUserApi.login(),
+      method: 'POST',
+      body: userData,
+    });
     if (!response.ok) {
       throw new Error('Ошибка при входе');
     }
@@ -26,7 +30,11 @@ export const loginUser = async (userData: LoginFormType) => {
 
 export const registerUser = async (userData: RegisterFormType) => {
   try {
-    const response = await fetchApi(userApi.register(), 'POST', userData);
+    const response = await fetchApi({
+      url: serverUserApi.register(),
+      method: 'POST',
+      body: userData,
+    });
     if (!response.ok) {
       throw new Error('Ошибка при регистрации');
     }

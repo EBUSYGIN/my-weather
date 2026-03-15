@@ -1,4 +1,4 @@
-import z, { email } from 'zod';
+import z from 'zod';
 
 export const LoginFormSchema = z.object({
   email: z.email('Некорректный email адрес').min(1, 'Email обязателен'),
@@ -20,13 +20,7 @@ export const RegisterFormSchema = z.object({
 
 export type RegisterFormType = z.infer<typeof RegisterFormSchema>;
 
-export interface IUserResponse {
-  user: User;
-  accessToken: string;
-  refreshToken: string;
-}
-
-export interface User {
+export interface IUser {
   id: string;
   email: string;
   name: string;
@@ -34,6 +28,12 @@ export interface User {
   updatedAt: string;
 }
 
+export interface IUserResponse {
+  user: IUser;
+  accessToken: string;
+  refreshToken: string;
+}
+
 export interface IUserInfoResponse {
-  userInfo: User;
+  userInfo: IUser;
 }

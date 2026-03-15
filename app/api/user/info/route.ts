@@ -1,6 +1,6 @@
-import { userApi } from '@/api/user/endpoints';
+import { serverUserApi } from '@/api/user/endpoints';
 import { IUserInfoResponse } from '@/api/user/types';
-import { fetchApi } from '@/assets/config/fetch';
+import { fetchApi } from '@/assets/lib/fetch/fetch';
 import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
@@ -14,13 +14,11 @@ export async function GET(request: NextRequest) {
     );
 
   try {
-    const response = await fetchApi(
-      userApi.getInfo(),
-      'GET',
-      undefined,
-      undefined,
-      accessToken.value,
-    );
+    const response = await fetchApi({
+      url: serverUserApi.getInfo(),
+      method: 'GET',
+      token: accessToken.value,
+    });
     const userData: IUserInfoResponse = await response.json();
     return NextResponse.json(userData, { status: 200 });
   } catch (e) {

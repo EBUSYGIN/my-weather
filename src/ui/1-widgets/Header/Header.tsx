@@ -10,14 +10,15 @@ import { Icon } from '@/ui/4-shared';
 import { CitySearch, GeoWeatherButton, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
+import { IUser } from '@/api/user/types';
 
 export function Header() {
-  const [state, setState] = useState<any>(null);
+  const [userInfo, setUserInfo] = useState<IUser | null>(null);
   useEffect(() => {
     const getUser = async () => {
       try {
         const data = await userHandlers.getUserInfo();
-        setState(data);
+        setUserInfo(data);
       } catch (e) {
         console.log(e);
       }
@@ -25,7 +26,7 @@ export function Header() {
     getUser();
   }, []);
 
-  console.log(state);
+  console.log(userInfo);
 
   return (
     <header className={styles.header}>
@@ -47,9 +48,15 @@ export function Header() {
       <div className={styles.actionsContainer}>
         <div className={styles.actions}>
           <GeoWeatherButton />
-          <Link href={'login'} className={styles.loginLink}>
-            Вход в аккаунт
-          </Link>
+          {userInfo ? (
+            <Link href='/profile' className={styles.loginLink}>
+              Профиль
+            </Link>
+          ) : (
+            <Link href='/login' className={styles.loginLink}>
+              Вход в аккаунт
+            </Link>
+          )}
         </div>
       </div>
     </header>
