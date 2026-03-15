@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { RegisterFormSchema, RegisterFormType } from '@/api/user/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-import { registerUser } from '@/api/user/handlers';
+import { registerUser } from '@/api/user/handlers/server-functions';
 import { Button, Input, Title } from '@/ui/4-shared';
 
 import styles from './RegistrationForm.module.css';

@@ -1,72 +1,18 @@
-'use server';
+import axiosInstance from '@/assets/lib/axios/axios-instance';
+import { clientUserApi } from '../endpoints';
+import { IUser } from '../types';
 
-import { redirect } from 'next/navigation';
-import { cookies } from 'next/headers';
-import { fetchApi } from '@/assets/config/fetch';
-import { userApi } from '../endpoints';
-import {
-  ILoginResponse,
-  IUserResponse,
-  LoginFormType,
-  RegisterFormType,
-} from '../types';
-
-export const loginUser = async (userData: LoginFormType) => {
+const getUserInfo = async () => {
   try {
-    const data: ILoginResponse = await fetchApi(
-      userApi.login(),
-      'POST',
-      userData,
-    );
-    const { accessToken, refreshToken } = data;
-    const cookieStore = await cookies();
-    cookieStore.set('accessToken', accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 15,
-    });
-    cookieStore.set('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
+    const response = await axiosInstance.get<IUser>(clientUserApi.getInfo());
+    const data = response.data;
+    return data;
   } catch (e) {
     if (e instanceof Error) throw e;
-    throw new Error('Ошибка при входе');
+    throw new Error('Ошибка запроса данных');
   }
-  redirect('/');
 };
 
-export const registerUser = async (userData: RegisterFormType) => {
-  try {
-    const data: IUserResponse = await fetchApi(
-      userApi.register(),
-      'POST',
-      userData,
-    );
-    const { accessToken, refreshToken } = data;
-    const cookieStore = await cookies();
-    cookieStore.set('accessToken', accessToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 15,
-    });
-    cookieStore.set('refreshToken', refreshToken, {
-      httpOnly: true,
-      secure: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 60 * 60 * 24 * 7,
-    });
-  } catch (e) {
-    if (e instanceof Error) throw e;
-    throw new Error('Ошибка при регистрации');
-  }
-  redirect('/');
+export const userHandlers = {
+  getUserInfo,
 };

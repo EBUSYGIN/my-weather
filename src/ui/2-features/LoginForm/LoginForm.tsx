@@ -5,7 +5,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, Input, Title } from '@/ui/4-shared';
 
-import { loginUser } from '@/api/user/handlers';
+import { loginUser } from '@/api/user/handlers/server-functions';
 import { LoginFormType, LoginFormSchema } from '@/api/user/types';
 
 import styles from './LoginForm.module.css';
