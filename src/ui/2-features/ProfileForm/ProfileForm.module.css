@@ -1,0 +1,33 @@
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.userHeadInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.fio {
+  display: flex;
+  align-items: center;
+}
+
+.userName {
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.actions {
+  max-width: fit-content;
+}
+
+.personalInfoContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
