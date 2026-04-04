@@ -1,15 +1,10 @@
-.form {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
-
 .userHeadInfo {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  margin-bottom: 30px;
 }
 
 .fio {
@@ -17,17 +12,13 @@
   align-items: center;
 }
 
+.userEmail {
+  font-weight: 400;
+  font-size: 14px;
+  opacity: 0.5;
+}
+
 .userName {
   font-weight: 500;
   font-size: 20px;
-}
-
-.actions {
-  max-width: fit-content;
-}
-
-.personalInfoContainer {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
 }

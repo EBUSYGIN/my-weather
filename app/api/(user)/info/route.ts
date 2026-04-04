@@ -8,7 +8,7 @@ export async function GET(request: NextRequest) {
   if (!accessToken)
     return NextResponse.json(
       {
-        message: 'Нет токена для авторизации',
+        message: 'Пользователь не авторизован',
       },
       { status: 403 },
     );
@@ -19,6 +19,16 @@ export async function GET(request: NextRequest) {
       method: 'GET',
       token: accessToken.value,
     });
+
+    if (!response.ok) {
+      return NextResponse.json(
+        {
+          message: 'пользователь не авторизован',
+        },
+        { status: 403 },
+      );
+    }
+
     const userData: IUserInfoResponse = await response.json();
     return NextResponse.json(userData, { status: 200 });
   } catch (e) {

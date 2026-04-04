@@ -37,3 +37,7 @@ export interface IUserResponse {
 export interface IUserInfoResponse {
   userInfo: IUser;
 }
+
+export interface IErrorResponse {
+  error: string;
+}

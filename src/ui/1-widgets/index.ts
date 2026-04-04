@@ -4,3 +4,4 @@ export { HomeMiddle } from './HomeMiddle/HomeMiddle';
 export { MajorCities } from './MajorCities/MajorCities';
 export { CityWeather } from './CityWeather/CityWeather';
 export { CityWeatherForecast } from './CityWeatherForecast/CityWeatherForecast';
+export { Profile } from './Profile/Profile';

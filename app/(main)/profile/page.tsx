@@ -1,6 +1,5 @@
-import { ProfileForm } from '@/ui/2-features';
-import { Card } from '@/ui/4-shared';
+import { Profile } from '@/ui/1-widgets';
 
 export default function ProfilePage() {
-  return <ProfileForm />;
+  return <Profile />;
 }

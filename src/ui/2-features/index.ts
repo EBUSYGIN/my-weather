@@ -3,4 +3,3 @@ export { CitySearch } from './CitySearch/CitySearch';
 export { GeoWeatherButton } from './GeoWeatherButton/GeoWeatherButton';
 export { LoginForm } from './LoginForm/LoginForm';
 export { RegistrationForm } from './RegistrationForm/RegistrationForm';
-export { ProfileForm } from './ProfileForm/ProfileForm';

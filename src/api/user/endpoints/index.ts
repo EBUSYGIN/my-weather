@@ -8,6 +8,6 @@ export const serverUserApi = {
 };
 
 export const clientUserApi = {
-  getInfo: () => `/user/info`,
-  refreshTokens: () => `api/user/refresh`,
+  getInfo: () => `api/info`,
+  refreshTokens: () => `api/refresh`,
 };

@@ -26,8 +26,6 @@ export function Header() {
     getUser();
   }, []);
 
-  console.log(userInfo);
-
   return (
     <header className={styles.header}>
       <div className={styles.info}>
