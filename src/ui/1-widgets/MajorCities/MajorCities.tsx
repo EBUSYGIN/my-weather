@@ -1,13 +1,11 @@
 import { Suspense } from 'react';
 
-import { cities } from '@/assets/config/majorCities.config';
-
 import { CityCard, CityCardSkeleton } from '@/ui/3-entities/City';
 import { Title } from '@/ui/4-shared';
 
 import styles from './MajorCities.module.css';
 
-export function MajorCities() {
+export function MajorCities({ cities }: { cities: string[] }) {
   return (
     <>
       <Title tag='h1' size='m'>

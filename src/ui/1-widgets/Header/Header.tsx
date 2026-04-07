@@ -10,10 +10,10 @@ import { Icon } from '@/ui/4-shared';
 import { CitySearch, GeoWeatherButton, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
-import { IUser } from '@/api/user/types';
+import { IUser, IUserInfoResponse } from '@/api/user/types';
 
 export function Header() {
-  const [userInfo, setUserInfo] = useState<IUser | null>(null);
+  const [userInfo, setUserInfo] = useState<IUserInfoResponse | null>(null);
   useEffect(() => {
     const getUser = async () => {
       try {

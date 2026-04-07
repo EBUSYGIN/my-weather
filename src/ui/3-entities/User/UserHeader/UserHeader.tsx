@@ -1,9 +1,23 @@
+'use client';
+
+import { useQuery } from '@tanstack/react-query';
+
+import { userHandlers } from '@/api/user/handlers';
 import { Button, Title } from '@/ui/4-shared';
 import Image from 'next/image';
 
-import styles from './Profile.module.css';
+import styles from './UserHeader.module.css';
+import { IUserInfoResponse } from '@/api/user/types';
+import { useAnyInfo } from '@/assets/hooks/useAnyInfo';
 
-export function Profile() {
+export function UserHeader() {
+  const { data } = useAnyInfo<IUserInfoResponse>(
+    'user',
+    userHandlers.getUserInfo,
+  );
+
+  console.log(data);
+
   return (
     <>
       <div className={styles.userHeadInfo}>
@@ -16,9 +30,9 @@ export function Profile() {
           />
           <div>
             <Title tag={'h2'} size={'s'}>
-              Здравствуйте, Фамилия имя отчество!
+              {`Здравствуйте, ${data?.userInfo.name}`}
             </Title>
-            <div className={styles.userEmail}>e@gmail.com</div>
+            <div className={styles.userEmail}>{data?.userInfo.email}</div>
           </div>
         </div>
         <div className={styles.actions}>
