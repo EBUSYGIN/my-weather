@@ -6,6 +6,7 @@
   display: flex;
   gap: 9px;
   align-items: baseline;
+  width: 100%;
 }
 
 .coords {
@@ -28,6 +29,10 @@
   align-items: center;
 }
 
+.toggler {
+  margin-left: auto;
+}
+
 .tempWrapper {
   display: flex;
   gap: 40px;
@@ -40,7 +45,7 @@
 }
 
 .temp::after {
-  content: '\00B0''C';
+  content: '\00B0' 'C';
 }
 
 .meta {

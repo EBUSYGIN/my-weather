@@ -24,6 +24,7 @@ export interface IUser {
   id: string;
   email: string;
   name: string;
+  favoriteCities: IFavoriteCity[];
   createdAt: string;
   updatedAt: string;
 }
@@ -36,4 +37,16 @@ export interface IUserResponse {
 
 export interface IUserInfoResponse {
   userInfo: IUser;
+}
+
+export interface IErrorResponse {
+  error: string;
+}
+
+export interface IFavoriteCity {
+  id: string;
+  userId: string;
+  cityName: string;
+  orderIndex: number;
+  createdAt: Date;
 }

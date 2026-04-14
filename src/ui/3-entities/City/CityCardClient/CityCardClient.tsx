@@ -1,18 +1,38 @@
+'use client';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useEffect, useState } from 'react';
 
-import { cityHandler } from '@/api/city/handler';
+import axiosInstance from '@/assets/lib/axios/axios-instance';
+
+import { ICurrentWeatherResponse } from '@/api/city/types';
+import { ISuccessResponse, IFailedResponse } from '@/services/types/utilTypes';
 
 import { weatherCodeToImage } from '@/assets/config/weatherImage.config';
 import { Card, Title } from '@/ui/4-shared';
 
-import { CityCardProps } from './CityCardProps';
-import styles from './CityCard.module.css';
+import styles from './CityCardClient.module.css';
 
-export async function CityCard({ city }: CityCardProps) {
-  const response = await cityHandler.getWeather(city);
+export function CityCardClient({ city }: { city: string }) {
+  const [response, setResponse] = useState<
+    ISuccessResponse<ICurrentWeatherResponse> | IFailedResponse | null
+  >(null);
 
-  if (!response.isSuccess) {
+  useEffect(() => {
+    const getWeather = async () => {
+      try {
+        const { data: response } = await axiosInstance<
+          ISuccessResponse<ICurrentWeatherResponse> | IFailedResponse
+        >(`/api/getCityWeather?city=${city}`);
+        setResponse(response);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getWeather();
+  }, [city]);
+
+  if (!response || !response.isSuccess) {
     return (
       <Card className={styles.card}>
         <Title tag='h3' size='s'>

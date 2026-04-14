@@ -1,0 +1,27 @@
+.list {
+  display: flex;
+
+  gap: 10px;
+  margin: 10px 0 40px 0;
+  overflow-x: auto;
+}
+
+/* Стили для WebKit-браузеров (Chrome, Safari, Edge) */
+.list::-webkit-scrollbar {
+  height: 6px; /* Высота горизонтального скроллбара */
+  background: transparent; /* Прозрачный фон трека */
+}
+
+.list::-webkit-scrollbar-track {
+  background: transparent; /* Прозрачный трек */
+}
+
+.list::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Прозрачный ползунок */
+  border-radius: 3px;
+}
+
+/* При наведении можно сделать ползунок видимым */
+.list:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2); /* Полупрозрачный цвет */
+}

@@ -1,0 +1,25 @@
+.userHeadInfo {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 30px;
+}
+
+.fio {
+  display: flex;
+  align-items: center;
+}
+
+.userEmail {
+  font-weight: 400;
+  font-size: 14px;
+
+  color: var(--font-gray);
+}
+
+.userName {
+  font-weight: 500;
+  font-size: 20px;
+}

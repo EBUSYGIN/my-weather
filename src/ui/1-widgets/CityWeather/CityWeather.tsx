@@ -2,18 +2,24 @@ import Image from 'next/image';
 
 import { weatherCodeToImage } from '@/assets/config/weatherImage.config';
 
-import { CityHandler } from '@/api/city/handler';
+import { cityHandler } from '@/api/city/handler';
 
-import { Title } from '@/ui/4-shared';
+import { Button, Title } from '@/ui/4-shared';
 
 import { CityWeatherProps } from './CityWeather.props';
 import styles from './CityWeather.module.css';
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
+import { ToggleFavCity } from '@/ui/2-features';
 
 export async function CityWeather({ city }: CityWeatherProps) {
-  const response = await CityHandler.getWeather(city);
+  const response = await cityHandler.getWeather(city);
 
-  if (!response.isSuccess || !response.data?.location || !response.data?.current) return null;
+  if (
+    !response.isSuccess ||
+    !response.data?.location ||
+    !response.data?.current
+  )
+    return null;
 
   return (
     <div className={styles.cityWeather}>
@@ -24,10 +30,11 @@ export async function CityWeather({ city }: CityWeatherProps) {
         <span className={styles.coords}>
           {response.data.location.lat} , {response.data.location.lon}
         </span>
+        <ToggleFavCity className={styles.toggler} cityName={city} />
       </div>
       <div className={styles.date}>
         {new Intl.DateTimeFormat('ru-RU', dateFormatOptions).format(
-          new Date(response.data.location.localtime)
+          new Date(response.data.location.localtime),
         )}
       </div>
 
@@ -46,7 +53,10 @@ export async function CityWeather({ city }: CityWeatherProps) {
         <Image
           width={200}
           height={200}
-          src={weatherCodeToImage[response.data.current.condition.code] ?? '/logo.png'}
+          src={
+            weatherCodeToImage[response.data.current.condition.code] ??
+            '/logo.png'
+          }
           alt='Изображение погоды'
         />
       </div>
