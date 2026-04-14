@@ -1,9 +1,9 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps } from 'react';
 
-export interface ButtonProps
-  extends DetailedHTMLProps<
-    ButtonHTMLAttributes<HTMLButtonElement>,
-    HTMLButtonElement
-  > {
+export interface ButtonProps extends DetailedHTMLProps<
+  ButtonHTMLAttributes<HTMLButtonElement>,
+  HTMLButtonElement
+> {
   appearance: 'ghost' | 'default';
+  buttonType?: 'toggler' | 'button';
 }

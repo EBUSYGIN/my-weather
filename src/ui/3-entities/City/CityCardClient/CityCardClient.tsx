@@ -1,5 +1,4 @@
 'use client';
-
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
@@ -30,11 +29,8 @@ export function CityCardClient({ city }: { city: string }) {
         console.log(error);
       }
     };
-
     getWeather();
   }, [city]);
-
-  console.log(response);
 
   if (!response || !response.isSuccess) {
     return (

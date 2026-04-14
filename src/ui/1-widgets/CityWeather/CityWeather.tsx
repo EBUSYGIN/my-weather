@@ -4,11 +4,12 @@ import { weatherCodeToImage } from '@/assets/config/weatherImage.config';
 
 import { cityHandler } from '@/api/city/handler';
 
-import { Title } from '@/ui/4-shared';
+import { Button, Title } from '@/ui/4-shared';
 
 import { CityWeatherProps } from './CityWeather.props';
 import styles from './CityWeather.module.css';
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
+import { ToggleFavCity } from '@/ui/2-features';
 
 export async function CityWeather({ city }: CityWeatherProps) {
   const response = await cityHandler.getWeather(city);
@@ -29,6 +30,7 @@ export async function CityWeather({ city }: CityWeatherProps) {
         <span className={styles.coords}>
           {response.data.location.lat} , {response.data.location.lon}
         </span>
+        <ToggleFavCity className={styles.toggler} cityName={city} />
       </div>
       <div className={styles.date}>
         {new Intl.DateTimeFormat('ru-RU', dateFormatOptions).format(

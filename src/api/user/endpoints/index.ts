@@ -5,9 +5,11 @@ export const serverUserApi = {
   register: () => `${NODE_API}/users/register`,
   updateTokens: () => `${NODE_API}/users/refresh`,
   getInfo: () => `${NODE_API}/users/info`,
+  toggleFavCity: () => `${NODE_API}/users/update-favorite-cities`,
 };
 
 export const clientUserApi = {
   getInfo: () => `api/info`,
   refreshTokens: () => `api/refresh`,
+  togglerFavCity: () => `api/toggleCity`,
 };

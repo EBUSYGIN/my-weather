@@ -4,13 +4,13 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
 import { userHandlers } from '@/api/user/handlers';
+import { IUserInfoResponse } from '@/api/user/types';
 import { dateFormatOptions } from '@/assets/config/dateFormatter.config';
 
 import { Icon } from '@/ui/4-shared';
 import { CitySearch, GeoWeatherButton, ThemeToggler } from '@/ui/2-features';
 
 import styles from './Header.module.css';
-import { IUser, IUserInfoResponse } from '@/api/user/types';
 
 export function Header() {
   const [userInfo, setUserInfo] = useState<IUserInfoResponse | null>(null);

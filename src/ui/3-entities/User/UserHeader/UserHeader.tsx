@@ -1,22 +1,18 @@
 'use client';
 
-import { useQuery } from '@tanstack/react-query';
-
 import { userHandlers } from '@/api/user/handlers';
 import { Button, Title } from '@/ui/4-shared';
 import Image from 'next/image';
-
-import styles from './UserHeader.module.css';
 import { IUserInfoResponse } from '@/api/user/types';
 import { useAnyInfo } from '@/assets/hooks/useAnyInfo';
+
+import styles from './UserHeader.module.css';
 
 export function UserHeader() {
   const { data } = useAnyInfo<IUserInfoResponse>(
     'user',
     userHandlers.getUserInfo,
   );
-
-  console.log(data);
 
   return (
     <>
@@ -36,7 +32,7 @@ export function UserHeader() {
           </div>
         </div>
         <div className={styles.actions}>
-          <Button appearance={'ghost'}>Изменить</Button>
+          <Button appearance={'ghost'}>Изменить данные</Button>
         </div>
       </div>
     </>
