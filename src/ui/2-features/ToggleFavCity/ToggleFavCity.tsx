@@ -1,18 +1,11 @@
 'use client';
-import {
-  useState,
-  useEffect,
-  useCallback,
-  useOptimistic,
-  startTransition,
-} from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import cn from 'classnames';
 
 import { Button } from '@/ui/4-shared';
 import { userHandlers } from '@/api/user/handlers';
 import { IUserInfoResponse } from '@/api/user/types';
 
-import { optimisticReducer } from './optimistic-reducer';
 import { IToggleFavCityProps } from './ToggleFavCity.props';
 import styles from './ToggleFavCity.module.css';
 
@@ -22,11 +15,7 @@ export function ToggleFavCity({
   cityName,
 }: IToggleFavCityProps) {
   const [isAuthorized, setIsAuthorized] = useState<boolean>(false);
-  const [cities, setCities] = useState<string[]>([]);
-  const [optimisticCityArray, setOptimisticCityArray] = useOptimistic<
-    string[],
-    string
-  >(cities, optimisticReducer);
+  const [userCities, setUserCities] = useState<string[]>([]);
 
   useEffect(() => {
     userHandlers
@@ -36,20 +25,19 @@ export function ToggleFavCity({
           (city) => city.cityName,
         );
         setIsAuthorized(true);
-        setCities(cities);
+        setUserCities(cities);
       })
       .catch(console.log);
   }, []);
 
   const onToggle = useCallback(async (city: string) => {
-    startTransition(async () => {
-      setOptimisticCityArray(cityName);
-      const cities = (
-        await userHandlers.togglerFavCity(cityName)
-      ).favoriteCities.map((city) => city.cityName);
-      console.log(cities);
-      setCities(cities);
-    });
+    userHandlers
+      .togglerFavCity(city)
+      .then((res) => {
+        const cities = res.favoriteCities.map((city) => city.cityName);
+        setUserCities(cities);
+      })
+      .catch((err) => console.log(err));
   }, []);
 
   if (!isAuthorized) {
@@ -61,7 +49,7 @@ export function ToggleFavCity({
       buttonType='toggler'
       appearance='ghost'
       className={cn(styles.toggler, className, {
-        [styles.active]: optimisticCityArray.some((city) => city === cityName),
+        [styles.active]: userCities.includes(cityName),
       })}
       onClick={() => onToggle(cityName)}
     >
