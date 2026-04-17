@@ -19,6 +19,7 @@ export function UserHeader() {
       <div className={styles.userHeadInfo}>
         <div className={styles.fio}>
           <Image
+            className={styles.photo}
             src={'/user-icons/stone.png'}
             alt={'Фотография пользователя'}
             width={100}
@@ -32,7 +33,7 @@ export function UserHeader() {
           </div>
         </div>
         <div className={styles.actions}>
-          <Button appearance={'ghost'}>Изменить данные</Button>
+          <Button appearance={'ghost'}>Редактировать данные</Button>
         </div>
       </div>
     </>
