@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { unstable_rethrow } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { RegisterFormSchema, RegisterFormType } from '@/api/user/types';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -24,6 +25,7 @@ export function RegistrationForm() {
     try {
       await registerUser(userData);
     } catch (e) {
+      unstable_rethrow(e);
       setError('email', {
         message: e instanceof Error ? e.message : 'Ошибка при регистрации',
       });

@@ -1,6 +1,7 @@
 'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import Link from 'next/link';
+import { unstable_rethrow } from 'next/navigation';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 import { Button, Input, Title } from '@/ui/4-shared';
@@ -25,6 +26,7 @@ export function LoginForm() {
     try {
       await loginUser(data);
     } catch (e) {
+      unstable_rethrow(e);
       setError('password', {
         message: e instanceof Error ? e.message : 'Ошибка при входе',
       });
